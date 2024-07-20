@@ -43,7 +43,22 @@ module.exports = {
     try {
       const product = await ProductModal.findByIdAndUpdate(id, req.body);
       res
-        .status(201)
+        .status(200)
+        .send({ status: "ok", message: "record updated", product });
+    } catch (err) {
+      res.status(500).send({ message: err.message });
+    }
+  },
+  searchProduct: async (req, res) => {
+    const { search } = req.body;
+    console.log(search, "search");
+    try {
+      const regex = new RegExp(search, "i"); // i for case insensitive
+      const product = await ProductModal.find({
+        productName: regex,
+      });
+      res
+        .status(200)
         .send({ status: "ok", message: "record updated", product });
     } catch (err) {
       res.status(500).send({ message: err.message });
