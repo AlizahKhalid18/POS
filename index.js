@@ -11,6 +11,7 @@ const connectDB = require("./config.js");
 const categoryRoutes = require("./Api/Category/CategoryRoutes.js");
 const companyRoutes = require("./Api/Company/CompanyRoute.js");
 const productRoutes = require("./Api/Product/ProductRoute.js");
+const orderRoutes = require("./Api/Order/OrderRoute.js");
 connectDB();
 
 app.use(cors());
@@ -21,7 +22,7 @@ app.use(express.static('public'))
 app.use("/catogories", categoryRoutes);
 app.use("/companies", companyRoutes);
 app.use("/products", productRoutes);
-
+app.use("/orders", orderRoutes);
 // app.post("/users", async (req, res) => {
 //   const user = new Usermodel(req.body);
 //   try {
